@@ -597,5 +597,5 @@ switch(argument0) {
 ```
 
 
-<u>Known Issues</u><br>
+<b>Known Issues</b><br>
 Currently, if a gamepad is disconnected, the game is unable to tell. So, uh... don't let that happen.
