@@ -226,7 +226,7 @@ if gamepad_is_connected(3) {
 }
 ```
 
-In order to add new gamepads when they are connected, the <i>gamepad_is_connected</i> conditional are repeated in a code action in the Step event.
+In order to add new gamepads when they are connected, the <i>gamepad_is_connected</i> conditionals are repeated in a code action in the Step event.
 
 In an additional code action in the Step event, we do the important work of listening to every potential input and create a selector object corresponding to it. (We also set up conditions that will allow the game to begin once all characters are chosen)
 
