@@ -28,7 +28,7 @@ var i;
                     break;
             }
             
-            player = instance_create(xx, yy, scr_dogForIndex(slots[i].dogIndex));
+            player = instance_create(xx, yy, scr_characterForIndex(slots[i].characterIndex));
             player.input = instance_create(0, 0, o_input);
             player.slotIndex = i;
             player.input.type = slots[i].inputType;

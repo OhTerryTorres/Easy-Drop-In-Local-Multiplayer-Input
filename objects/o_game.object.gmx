@@ -570,10 +570,10 @@ if room == room_start {
                 slots[i] = instance_create(0,0,o_slot);
                 slots[i].inputIndex = o_menuCharacterSelect.characterSelectors[i].inputIndex;
                 slots[i].inputType = o_menuCharacterSelect.characterSelectors[i].input.type;
-                slots[i].dogIndex = o_menuCharacterSelect.characterSelectors[i].dogIndex;
+                slots[i].characterIndex = o_menuCharacterSelect.characterSelectors[i].characterIndex;
                 slots[i].matchWins = oldMatchWins;
                 show_debug_message("slots[" + string(i) + "].inputType is " + string(slots[i].inputType));
-                show_debug_message("slots[" + string(i) + "].dogIndex is " + string(slots[i].dogIndex));
+                show_debug_message("slots[" + string(i) + "].characterIndex is " + string(slots[i].characterInex));
             } else {
                 slots[i] = noone;
             }
@@ -1036,7 +1036,7 @@ if room == room_results {
             }
         } 
         slotIndex = winnerIndex;
-        dogIndex = o_game.slots[slotIndex].dogIndex;
+        characterIndex = o_game.slots[slotIndex].characterIndex;
         
     }
 }

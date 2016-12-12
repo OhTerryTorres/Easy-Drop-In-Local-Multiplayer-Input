@@ -90,7 +90,7 @@ if owner != noone {
     if !instance_exists(o_roundEnd) {
         with instance_create(0,0,o_roundEnd) {
             slotIndex = other.owner.slotIndex;
-            dogIndex = o_game.slots[slotIndex].dogIndex;
+            characterIndex = o_game.slots[slotIndex].characterIndex;
         }
     }
 }

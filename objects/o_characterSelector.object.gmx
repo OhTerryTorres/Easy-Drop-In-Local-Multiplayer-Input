@@ -28,12 +28,12 @@
             <string>/// Initialize character selector
 
 show_debug_message("Character Selector created!");
-alarm[0] = room_speed / 6;
+//alarm[0] = room_speed / 6;
 
 slot = -1;
 input = noone;
 inputIndex = -1; // used to access the right index in o_menuCharacterSelect.inputs
-dogIndex = 0
+characterIndex = 0
 confirmed = false;
 
 matchWins = 0;
@@ -118,10 +118,10 @@ var keyPressed = "";
 if input != noone {
 
     if input.leftPressed &amp;&amp; !confirmed {
-        dogIndex -= 1;
+        characterIndex -= 1;
     }
     if input.rightPressed &amp;&amp; !confirmed {
-        dogIndex += 1;
+        characterIndex += 1;
     }
     
     if input.upPressed {
@@ -138,11 +138,11 @@ if input != noone {
     
 }
 
-if dogIndex &lt; 0 {
-    dogIndex = NUM_CHARACTERS - 1;
+if characterIndex &lt; 0 {
+    characterIndex = NUM_CHARACTERS - 1;
 }
-if dogIndex &gt; NUM_CHARACTERS - 1 {
-    dogIndex = 0;
+if characterIndex &gt; NUM_CHARACTERS - 1 {
+    characterIndex = 0;
 }
 
 
@@ -254,10 +254,10 @@ var yy = display_get_gui_height()*.5;
 
 // Draw name
 draw_set_halign(fa_center);
-draw_text(xx, yy-64, scr_nameForIndex(dogIndex));
+draw_text(xx, yy-64, scr_nameForIndex(characterIndex));
 
 // Draw sprite
-draw_sprite(scr_spriteForIndex(dogIndex), image_index, xx, yy);
+draw_sprite(scr_spriteForIndex(characterIndex), image_index, xx, yy);
 
 // Draw info
 var info =""

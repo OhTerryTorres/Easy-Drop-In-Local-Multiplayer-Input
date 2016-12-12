@@ -35,7 +35,7 @@ if instance_exists(o_title) {
 
 title = instance_create(room_width/2, room_height/2, o_title);
 slotIndex = 0;
-dogIndex = 0;
+characterIndex = 0;
 title.text = "";
 alarm[0] = room_speed / 2;
 alarm[1] = room_speed * 8;
@@ -117,7 +117,7 @@ room_goto(room_start);
 
 var randomX = random_range(0, room_width);
 var randomY = random_range(0, room_height);
-instance_create(randomX, randomY, scr_dogForIndex(dogIndex));
+instance_create(randomX, randomY, scr_characterForIndex(characterIndex));
 
 alarm[0] = room_speed / 6;
 </string>

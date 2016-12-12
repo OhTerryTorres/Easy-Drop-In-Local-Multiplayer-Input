@@ -33,7 +33,7 @@ if instance_exists(o_title) {
 
 title = instance_create(room_width/2, room_height/2, o_title);
 slotIndex = 0;
-dogIndex = 0;
+characterIndex = 0;
 title.text = "";
 alarm[0] = room_speed * 2;
 </string>
@@ -111,11 +111,11 @@ room_goto_next();
             <kind>1</kind>
             <string>/// Update title with winner
 
-var name = scr_nameForIndex(dogIndex);
+var name = scr_nameForIndex(characterIndex);
 
 var gender = "";
 
-if dogIndex = 3 { gender = "GIRL"; } else { gender = "BOY"; }
+if characterIndex = 3 { gender = "GIRL"; } else { gender = "BOY"; }
 
 title.text = "GOOD " + string(gender) + ", " + string(name) + "!";
 </string>

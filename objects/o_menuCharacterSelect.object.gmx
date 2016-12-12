@@ -123,7 +123,7 @@ for ( i = 0; i &lt; array_length_1d(o_game.slots); i += 1 ) {
         characterSelectors[i].input.slot = i;
         inputs[o_game.slots[i].inputIndex].assigned = true;
         characterSelectors[i].inputIndex = o_game.slots[i].inputIndex;
-        characterSelectors[i].dogIndex = o_game.slots[i].dogIndex;
+        characterSelectors[i].characterIndex = o_game.slots[i].characterIndex;
         characterSelectors[i].matchWins = o_game.slots[i].matchWins;
     } else {
         characterSelectors[i] = noone;
@@ -298,7 +298,7 @@ if confirmations == activeSelectors &amp;&amp; activeSelectors &gt; 0 {
     }
 }
 
-
+// Add Character Selectors
 var ii;
 for (ii = 0; ii &lt; array_length_1d(inputs); ii += 1) { // for every input
     // if any button is pressed

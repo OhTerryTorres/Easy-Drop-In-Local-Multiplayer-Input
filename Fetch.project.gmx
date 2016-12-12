@@ -55,7 +55,7 @@
       <script>scripts\scr_platformCheck.gml</script>
       <script>scripts\scr_nameForIndex.gml</script>
       <script>scripts\scr_spriteForIndex.gml</script>
-      <script>scripts\scr_dogForIndex.gml</script>
+      <script>scripts\scr_characterForIndex.gml</script>
       <script>scripts\scr_getInputFromType.gml</script>
     </scripts>
     <script>scripts\scr_approach.gml</script>

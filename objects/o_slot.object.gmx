@@ -29,7 +29,9 @@
 
 inputIndex = -1;
 inputType = -1;
-dogIndex = -1;
+characterIndex = -1;
+
+// Gameplay-centric information
 roundWins = 0;
 matchWins = 0;
 </string>
