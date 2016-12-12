@@ -131,7 +131,7 @@ switch type {
 
 ``` 
 
-The <b>o_slot</b> object will solely be used as an organized method of storing the correct information for the appropriate player in the main game object. Its Creat event is as so:
+The <b>o_slot</b> object will solely be used as an organized method of storing the correct information for the appropriate player in the main game object. Its Create event is as so:
 
 ``` 
 /// Intialize player slot
