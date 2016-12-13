@@ -45,7 +45,7 @@ lastxaxis = noone;
 lastyaxis = noone;
 
 
-type = INPUT_ARROWS; // 0
+type = INPUT_ARROWS;
 assigned = false; // keeps splitting one input between multiple players
 ```  
 
@@ -55,7 +55,7 @@ By default, <b>o_input</b> is assigned the keyboard arrows. However, the Step ev
 var deadzone = 0.8;
 
 switch type {
-    case INPUT_ARROWS:
+    case INPUT_ARROWS: // 0
         up = keyboard_check(vk_up);
         down = keyboard_check(vk_down);
         left = keyboard_check(vk_left);
@@ -73,7 +73,7 @@ switch type {
         
         name = "KEYS"
         break;
-    case INPUT_WASD:
+    case INPUT_WASD: // 1
         up = keyboard_check(ord('W'));
         down = keyboard_check(ord('S'));
         left = keyboard_check(ord('A'));
@@ -91,7 +91,7 @@ switch type {
         
         name = "WASD"
         break;
-    case INPUT_GAMEPAD:
+    case INPUT_GAMEPAD: // 2
         if gamepad_is_connected(port) {
             gamepad_set_axis_deadzone(port, deadzone);
             
@@ -347,7 +347,7 @@ if input != noone {
 }
 
 if characterIndex < 0 {
-    characterIndex = NUM_CHARACTERS - 1;
+    characterIndex = NUM_CHARACTERS - 1; // NUM_CHARACTERS is 4 in this case
 }
 if characterIndex > NUM_CHARACTERS - 1 {
     characterIndex = 0;
