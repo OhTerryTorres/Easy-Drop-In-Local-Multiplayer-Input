@@ -1,4 +1,6 @@
 # Easy-Local-Multiplayer-Input
+<p align="center"><img src="http://i.imgur.com/ajGJP8k.gif"></p>
+
 This small game makes use of a Smash Bros-esque character select screen, allowing players to push a button on any controller (or keyboard) currently connected to the PC to join the game.
 
 This is done by relying on a series of objects working together.
@@ -47,7 +49,7 @@ type = INPUT_ARROWS; // 0
 assigned = false; // keeps splitting one input between multiple players
 ```  
 
-By default, <b>o_input</b> is assigned the keyboar arrows. However, the Step event changes this layout depending on how the object's <b>type</b> is set:
+By default, <b>o_input</b> is assigned the keyboard arrows. However, the Step event changes this layout depending on how the object's <b>type</b> is set:
 
 ``` 
 var deadzone = 0.8;
@@ -146,7 +148,7 @@ roundWins = 0;
 matchWins = 0;
 ``` 
 
-Now let get down to the actual order of events.
+Now lets get down to the actual order of events.
 
 The first room of this project is the character selection screen. There are only two objects in the room to begin with. The first is <b>o_game</b>, whose Create event includes this code:
 
@@ -159,7 +161,7 @@ slots[2] = noone;
 slots[3] = noone;
 ```
 
-The event that does most of the work on this screen, however, is <b>o_menuCharacterSelect</b> (or <b>o_menu</b> for short). Its Create event prepare a potential character selector object for each player. It also stores every possible input.
+The second object, <b>o_menuCharacterSelect</b> (or <b>o_menu</b> for short), will do most of the work of connecting players and controllers. Its Create event prepares a potential character selector object for each player. It also stores every possible input.
 
 ```
 /// Initialize menu and all available inputs
@@ -229,7 +231,7 @@ if gamepad_is_connected(3) {
 
 In order to add new gamepads when they are connected, the <i>gamepad_is_connected</i> conditionals are repeated in a code action in the Step event.
 
-In an additional code action in the Step event, we do the important work of listening to every potential input and create a selector object corresponding to it. (We also set up conditions that will allow the game to begin once all characters are chosen)
+In an additional code action in the Step event, we do the important work of listening to every potential input to create a selector object corresponding to it. (We also set up conditions that will allow the game to begin once all characters are chosen)
 
 ```
 /// Control character selector appearance and round begin
@@ -462,7 +464,7 @@ switch(argument0) {
 }
 ```
 
-In <b>o_characterSelector</b>, pressing Down cancels your selection and destroys the object instance. In this case, its important to let <b>o_menu</b> know that the appropriate input is not free to assign to a new player. That's why this is in the Destroy event:
+In <b>o_characterSelector</b>, pressing Down cancels your selection and destroys the object instance. In this case, its important to let <b>o_menu</b> know that the appropriate input is now free to assign to a new player. That's why this is in the Destroy event:
 
 ```
 /// Anull inputs and slots
@@ -502,9 +504,9 @@ if alarm[0] <= 0 {
 
 And now for the dismount! Here is <b>o_game</b>'s Room End event, using a condition for the character select screen.
 
+```
 /// Character Select Room: Create player slots
 
-```
 if room == room_start {
     if instance_exists(o_menuCharacterSelect) {
         var i;
@@ -530,7 +532,7 @@ if room == room_start {
 }
 ```
 
-And <b>o_game</b>'s Room Start event creates every player instance based on the information in its slots array.
+And <b>o_game</b>'s Room Start event creates every player instance based on the information in its slots array. (This takes for granted that your player object has an input variable that can be set, along with anything else that will be necessary to store during gameplay, like the slotIndex to used later on to tabulate points over several games.)
 
 ```
 /// Game Room: Set up round
