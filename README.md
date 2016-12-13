@@ -1,7 +1,7 @@
 # Easy Drop-In Local Multiplayer Input
 <p align="center"><img src="http://i.imgur.com/ajGJP8k.gif"></p>
 
-This small game makes use of a Smash Bros-esque character select screen, allowing players to push a button on any controller (or keyboard) currently connected to the PC to join the game.
+This small game makes use of a Smash Bros-esque character select screen, allowing players to push a button on any controller (or keyboard) currently connected to the PC to join the game. (The game itself is here: http://terry-torres.com/Fetch.exe)
 
 This is done by relying on a series of objects working together.
 <ul>
