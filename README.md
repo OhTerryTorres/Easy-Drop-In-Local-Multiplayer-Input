@@ -138,6 +138,7 @@ The <b>o_slot</b> object will solely be used as an organized method of storing t
 
 inputIndex = -1;
 inputType = -1;
+inputPort = -1;
 characterIndex = -1;
 
 // Gameplay-centric information
@@ -516,6 +517,7 @@ if room == room_start {
                 slots[i] = instance_create(0,0,o_slot);
                 slots[i].inputIndex = o_menuCharacterSelect.characterSelectors[i].inputIndex;
                 slots[i].inputType = o_menuCharacterSelect.characterSelectors[i].input.type;
+                slots[i].inputPort = o_menuCharacterSelect.characterSelectors[i].input.port;
                 slots[i].characterIndex = o_menuCharacterSelect.characterSelectors[i].characterIndex;
                 slots[i].matchWins = oldMatchWins;
                 show_debug_message("slots[" + string(i) + "].inputType is " + string(slots[i].inputType));
@@ -566,7 +568,7 @@ if room != room_start && room != room_results {
               player.input = instance_create(0, 0, o_input);
               player.slotIndex = i;
               player.input.type = slots[i].inputType;
-              show_debug_message("player.input.name is " + string(player.input.name))
+              player.input.port = slots[i].inputPort;
           }
 
       }
