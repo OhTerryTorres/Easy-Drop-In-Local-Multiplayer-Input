@@ -7,10 +7,7 @@
   <NewExtensions>
     <extension index="0">extensions\HTML5 Loading Spinner</extension>
   </NewExtensions>
-  <sounds name="sound">
-    <sound>sound\sound_game</sound>
-    <sound>sound\sound_results</sound>
-  </sounds>
+  <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\s_solid</sprite>
     <sprites name="Brother">

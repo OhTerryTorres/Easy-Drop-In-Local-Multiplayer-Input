@@ -1,5 +1,5 @@
 ///scr_createPlayers
-// Assign dog to player based on dog_index passed from menu to game. Phew!
+// Assign dog to player based on indices passed from menu to game. Phew!
 
 var i;
     var xx = 0;
@@ -32,6 +32,7 @@ var i;
             player.input = instance_create(0, 0, o_input);
             player.slotIndex = i;
             player.input.type = slots[i].inputType;
+            player.input.port = slots[i].inputPort;
             show_debug_message("player.input.name is " + string(player.input.name))
         }
         

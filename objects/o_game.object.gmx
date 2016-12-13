@@ -570,10 +570,11 @@ if room == room_start {
                 slots[i] = instance_create(0,0,o_slot);
                 slots[i].inputIndex = o_menuCharacterSelect.characterSelectors[i].inputIndex;
                 slots[i].inputType = o_menuCharacterSelect.characterSelectors[i].input.type;
+                slots[i].inputPort = o_menuCharacterSelect.characterSelectors[i].input.port;
                 slots[i].characterIndex = o_menuCharacterSelect.characterSelectors[i].characterIndex;
                 slots[i].matchWins = oldMatchWins;
                 show_debug_message("slots[" + string(i) + "].inputType is " + string(slots[i].inputType));
-                show_debug_message("slots[" + string(i) + "].characterIndex is " + string(slots[i].characterInex));
+                show_debug_message("slots[" + string(i) + "].characterIndex is " + string(slots[i].characterIndex));
             } else {
                 slots[i] = noone;
             }

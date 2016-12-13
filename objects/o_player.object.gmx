@@ -632,7 +632,7 @@ if (touchPaint || tempPaint) {
             <kind>1</kind>
             <string>/// Movement from input
 
-if input != noone {
+if instance_exists(input) &amp;&amp; input != noone {
 
     if (input.right || input.left)
         omega = 6 * pi;
