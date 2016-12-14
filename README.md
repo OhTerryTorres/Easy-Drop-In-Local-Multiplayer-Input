@@ -6,7 +6,7 @@ This small game makes use of a Smash Bros-esque character select screen, allowin
 This is done by relying on a series of objects working together.
 <ul>
 <li>a ubiquitous <b>game</b> object to act as listener and controller (which is Persistent)
-<li>a <b>slot</b> object use by the game object to receive and store information for each player (also Persistent)
+<li>a <b>slot</b> object used by the game object to receive and store information for each player (also Persistent)
 <li>an <b>input</b> object that assigns key/button presses based on the type of controller
 <li>a <b>menu</b> object that reads every possible input
 <li>a <b>selector</b> object whose instances correspond to each player
@@ -46,7 +46,7 @@ lastyaxis = noone;
 
 
 type = INPUT_ARROWS;
-assigned = false; // keeps splitting one input between multiple players
+assigned = false; // keeps from splitting one input between multiple players
 ```  
 
 By default, <b>o_input</b> is assigned the keyboard arrows. However, the Step event changes this layout depending on how the object's <b>type</b> is set:
@@ -150,10 +150,10 @@ matchWins = 0;
 
 Now lets get down to the actual order of events.
 
-The first room of this project is the character selection screen. There are only two objects in the room to begin with. The first is <b>o_game</b>, whose Create event includes this code:
+The first room of this project, <b>room_start</b> is the character selection screen. There are only two objects in the room to begin with. The first is <b>o_game</b>. Although it will be used to initiate a lot of context-sensitive events in the game coordinating between different object, all it really does in its Create event is prepare to store information for four potential players:
 
 ```    
-if (instance_number(o_game) > 1)
+if (instance_number(o_game) > 1) // Only one game object can exist
     instance_destroy();
 slots[0] = noone;
 slots[1] = noone;
@@ -161,7 +161,7 @@ slots[2] = noone;
 slots[3] = noone;
 ```
 
-The second object, <b>o_menuCharacterSelect</b> (or <b>o_menu</b> for short), will do most of the work of connecting players and controllers. Its Create event prepares a potential character selector object for each player. It also stores every possible input.
+The second object, <b>o_menuCharacterSelect</b> (or <b>o_menu</b> for short), will do most of the work of connecting players and controllers. Its Create event prepares a potential character selector object for each player. It also stores every possible input. (Values in ALL CAPS represent macros, whose raw values are in the nearby comment)
 
 ```
 /// Initialize menu and all available inputs
@@ -179,18 +179,18 @@ inputs[4] = noone;
 inputs[5] = noone;
 
 inputArrows = instance_create(0,0,o_input);
-inputArrows.type = INPUT_ARROWS
+inputArrows.type = INPUT_ARROWS // 0
 inputArrows.inputIndex = 0;
 inputs[0] = inputArrows;
 
 inputWASD = instance_create(0,0,o_input);
-inputWASD.type = INPUT_WASD
+inputWASD.type = INPUT_WASD // 1
 inputWASD.inputIndex = 1;
 inputs[1] = inputWASD;
 
 if gamepad_is_connected(0) {
     inputGamepad0 = instance_create(0,0,o_input);
-    inputGamepad0.type = INPUT_GAMEPAD
+    inputGamepad0.type = INPUT_GAMEPAD // 2
     inputGamepad0.lastxaxis = gamepad_axis_value(0, gp_axislh)
     inputGamepad0.lastyaxis = gamepad_axis_value(0, gp_axislv)
     inputGamepad0.port = 0;
@@ -229,9 +229,9 @@ if gamepad_is_connected(3) {
 }
 ```
 
-In order to add new gamepads when they are connected, the <i>gamepad_is_connected</i> conditionals are repeated in a code action in the Step event.
+In order to add new gamepads when they are connected, the <i>gamepad_is_connected</i> conditionals are repeated in a code action in <b>o_menu</b>'s Step event.
 
-In an additional code action in the Step event, we do the important work of listening to every potential input to create a selector object corresponding to it. (We also set up conditions that will allow the game to begin once all characters are chosen)
+In an additional code action in <b>o_menu</b>'s Step event, we do the important work of listening to every potential input to create a selector object corresponding to it. (We also set up conditions that will allow the game to begin once all characters are chosen)
 
 ```
 /// Control character selector appearance and round begin
@@ -502,7 +502,7 @@ if alarm[0] <= 0 {
 }
 ```
 
-And now for the dismount! Here is <b>o_game</b>'s Room End event, using a condition for the character select screen.
+And now for the dismount! Here is <b>o_game</b>'s Room End event, in which it pulls all the information we needs from the menu's character selectors an stores them in each element of the game's slots array.
 
 ```
 /// Character Select Room: Create player slots
@@ -532,7 +532,7 @@ if room == room_start {
 }
 ```
 
-And <b>o_game</b>'s Room Start event creates every player instance based on the information in its slots array. (This takes for granted that your player object has an input variable that can be set, along with anything else that will be necessary to store during gameplay, like the slotIndex to used later on to tabulate points over several games.)
+And <b>o_game</b>'s Room Start event creates every player instance based on the information in its slots array. (This takes for granted that your player object has <i>input</i> and <i>slotIndex</i> variables that can be set, along with anything else that will be necessary to store during gameplay.)
 
 ```
 /// Game Room: Set up round
@@ -600,6 +600,8 @@ switch(argument0) {
 }
 ```
 
+And there you are. Now each player object owns an <i>input</i> object that can be used to control player actions using statements like "o_player.input.leftPressed" and so on. Keep in mind, though, that if your player does not have an input assigned to it at a given time – or if your game checks for the input while it is being switched from one controller to another – this could cause problems, in which case it's wise to check if your player's input object exists and is not equal to <i>noone</i> before checking for butting presses.
+
 
 <b>Known Issues</b><br>
-Currently, if a gamepad is disconnected, the game is unable to tell. So, uh... don't let that happen.
+Currently, if a gamepad is disconnected, the game will assume that it as still connected. So, uh... don't let that happen.
