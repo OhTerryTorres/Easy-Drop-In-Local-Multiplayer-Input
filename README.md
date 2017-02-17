@@ -502,7 +502,7 @@ if alarm[0] <= 0 {
 }
 ```
 
-And now for the dismount! Here is <b>o_game</b>'s Room End event, in which it pulls all the information we needs from the menu's character selectors an stores them in each element of the game's slots array.
+And now for the dismount! Here is <b>o_game</b>'s Room End event, in which it pulls all the information we needs from the menu's character selectors and stores them in each element of the game's slots array.
 
 ```
 /// Character Select Room: Create player slots
